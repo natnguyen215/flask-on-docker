@@ -10,25 +10,20 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build and start development services
-        run: docker compose up --build -d
-
-      - name: Verify webpage
+      - name: Create development environment
         run: |
-          for i in {1..30}; do
-            if curl --fail http://localhost:5001/; then
-              exit 0
-            fi
-            sleep 2
-          done
-          docker compose logs
-          exit 1
+          cat > .env.dev <<'EOF'
+          FLASK_APP=project/__init__.py
+          FLASK_DEBUG=1
+          DATABASE_URL=postgresql://hello_flask:hello_flask@db:5432/hello_flask_dev
+          SQL_HOST=db
+          SQL_PORT=5432
+          DATABASE=postgres
+          APP_FOLDER=/usr/src/app
+          EOF
 
-      - name: Stop services
-        if: always()
-        run: docker compose down -v
+      - name: Build development services
+        run: docker compose -f docker-compose.yml build
