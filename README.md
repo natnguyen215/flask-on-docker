@@ -1,6 +1,6 @@
 # Flask Image Upload Service
 
-[![Development Build](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY/actions/workflows/python-app.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY/actions/workflows/python-app.yml)
+[![Development Build](https://github.com/natnguyen215/flask-on-docker/actions/workflows/python-app.yml/badge.svg)](https://github.com/natnguyen215/flask-on-docker/actions/workflows/python-app.yml)
 
 A containerized Flask web application for uploading and viewing images. The project provides a reproducible local development environment using Docker Compose, with Flask serving the application and PostgreSQL providing persistent data storage. Its development build is verified automatically with GitHub Actions on every push and pull request.
 
