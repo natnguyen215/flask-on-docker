@@ -8,6 +8,44 @@ A Flask application containerized with Docker using PostgreSQL, Gunicorn, and Ng
 
 ![Flask on Docker demo](demo.gif)
 
+## Environment setup
+
+Create the following sample environment files in the root of the repository before starting the application.
+
+### `.env.dev`
+
+```text
+FLASK_APP=project/__init__.py
+FLASK_DEBUG=1
+DATABASE_URL=postgresql://hello_flask:hello_flask@db:5432/hello_flask_dev
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
+APP_FOLDER=/usr/src/app
+```
+
+### `.env.prod`
+
+```text
+FLASK_APP=project/__init__.py
+FLASK_DEBUG=0
+DATABASE_URL=postgresql://hello_flask:hello_flask@db:5432/hello_flask_prod
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
+APP_FOLDER=/home/app/web
+```
+
+### `.env.prod.db`
+
+```text
+POSTGRES_USER=hello_flask
+POSTGRES_PASSWORD=hello_flask
+POSTGRES_DB=hello_flask_prod
+```
+
+These files are excluded from version control.
+
 ## Running the application
 
 ### 1. Clone the repository
@@ -43,17 +81,7 @@ The upload page is available at:
 http://localhost:1143/upload
 ```
 
-If running the application on the Lambda server, forward the port to your local machine:
-
-```bash
-ssh -L 8080:localhost:1143 <username>@lambda
-```
-
-Then open:
-
-```text
-http://localhost:8080/upload
-```
+If using a server, portforwarding will need to be done.
 
 From the web interface:
 
@@ -61,18 +89,12 @@ From the web interface:
 2. Submit the upload form.
 3. Visit `/media/<filename>` to view the uploaded file.
 
-### 5. Verify static files
+### 5. Check static files
 
 The example static file is available at:
 
 ```text
 http://localhost:1143/static/hello.txt
-```
-
-or, through the SSH tunnel:
-
-```text
-http://localhost:8080/static/hello.txt
 ```
 
 ### 6. Stop the application
