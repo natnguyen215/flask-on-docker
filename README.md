@@ -10,7 +10,7 @@ A Flask application containerized with Docker using PostgreSQL, Gunicorn, and Ng
 
 ## Environment setup
 
-Create the following sample environment files in the root of the repository before starting the application.
+Create the following sample environment file in the root of the repository before starting the application.
 
 ### `.env.prod.db`
 
@@ -20,7 +20,7 @@ POSTGRES_PASSWORD=
 POSTGRES_DB=
 ```
 
-These files are excluded from version control.
+This file is excluded from version control.
 
 ## Running the application
 
